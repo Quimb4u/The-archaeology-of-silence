@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>The Archaeology of Silence</title>
+  <style>
+    :root{--blue:#3348ed;--ink:#111;--paper:#fff;--soft:#d9d9d9;--serif:Georgia,'Times New Roman',serif;--sans:Arial,Helvetica,sans-serif}
+    *{box-sizing:border-box;cursor:none!important}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300}button{font:inherit}
+    .topbar{position:fixed;z-index:20;inset:0 0 auto;display:flex;justify-content:space-between;padding:24px 3.4vw;font-size:13px;mix-blend-mode:multiply}.topbar a{color:inherit;text-decoration:none}.nav{display:flex;gap:30px}.nav a{transition:opacity .25s}.nav a:hover{opacity:.45}
+    .opening{position:relative;height:250vh;overflow:visible;padding:0}.opening-frame{position:sticky;top:0;z-index:1;height:100vh;overflow:hidden}.field{position:absolute;inset:0;pointer-events:none}.tile{--scroll-scale:1;--scroll-y:0px;--hover-scale:1;position:absolute;display:block;border:0;padding:0;background:#d7d7d7;border-radius:5px;overflow:visible;cursor:none;pointer-events:auto;transform:translateY(var(--scroll-y)) scale(var(--scroll-scale)) scale(var(--hover-scale));transition:transform .75s cubic-bezier(.2,.7,.15,1),filter .75s,opacity .6s,box-shadow .6s;filter:blur(1.5px);opacity:.94}.tile::before{content:"";position:absolute;inset:-8%;border-radius:5px;background:var(--image,linear-gradient(135deg,#d9d9d9,#cfcfcf));background-size:cover;background-position:center;filter:grayscale(1) blur(12px);transform:scale(1.08);transition:filter .8s,transform .8s}.tile:hover,.tile:focus-visible{z-index:5;--hover-scale:1.13;filter:blur(0);box-shadow:0 12px 35px #0002;outline:0}.tile:hover::before,.tile:focus-visible::before{filter:grayscale(1) blur(0);transform:scale(1)}.tile small{position:absolute;left:2px;bottom:-17px;font:italic 10px var(--serif);color:#111}
+    .t01{left:4%;top:11%;width:9%;height:22%}.t02{left:23%;top:5%;width:12%;height:15%}.t03{left:20%;top:27%;width:7%;height:11%}.t04{left:42%;top:7%;width:12%;height:27%}.t05{left:63%;top:10%;width:17%;height:17%}.t06{left:84%;top:13%;width:11%;height:21%}.t07{left:73%;top:38%;width:7%;height:11%}.t08{left:91%;top:42%;width:7%;height:13%}.t09{left:5%;top:64%;width:15%;height:23%}.t10{left:30%;top:57%;width:9%;height:13%}.t11{left:56%;top:63%;width:14%;height:19%}.t12{left:79%;top:73%;width:16%;height:22%}.t13{left:33%;top:83%;width:17%;height:13%}
+    .t01{--image:linear-gradient(160deg,transparent 0 37%,#eee 38% 43%,#262626 44% 49%,#888 50% 54%,#ddd 55% 72%,#555 73%),repeating-linear-gradient(94deg,#333 0 3px,#aaa 4px 8px,#444 9px 12px)}
+    .t02{--image:radial-gradient(ellipse at 52% 38%,#eee 0 9%,#aaa 10% 18%,transparent 19%),linear-gradient(135deg,#222 0 20%,#999 21% 28%,#eee 29% 40%,#555 41% 54%,#bbb 55% 73%,#333 74%)}
+    .t03{--image:linear-gradient(180deg,#aaa 0 38%,#eee 39% 48%,#555 49% 52%,#bdbdbd 53%),repeating-linear-gradient(88deg,transparent 0 12px,#333 13px 16px,transparent 17px 24px)}
+    .t04{--image:radial-gradient(ellipse at 67% 28%,#eee 0 8%,#bbb 17%,transparent 36%),linear-gradient(180deg,#777 0 25%,transparent 26%),repeating-linear-gradient(94deg,#222 0 4px,#666 5px 9px,#bbb 10px 14px,#444 15px 20px)}
+    .t05{--image:linear-gradient(176deg,#eee 0 34%,#aaa 35% 40%,#333 41% 45%,#aaa 46% 51%,#555 52% 61%,#ddd 62% 78%,#333 79%),radial-gradient(ellipse at 35% 55%,#fff,transparent 45%)}
+    .t06{--image:linear-gradient(125deg,transparent 0 35%,#333 36% 39%,#ddd 40% 62%,#555 63% 68%,transparent 69%),linear-gradient(180deg,#bbb,#444)}
+    .t07{--image:radial-gradient(ellipse at 50% 50%,#eee 0 7%,#555 8% 12%,transparent 13%),repeating-linear-gradient(0deg,#444 0 2px,#aaa 3px 7px,#ddd 8px 11px)}
+    .t08{--image:radial-gradient(ellipse at 48% 38%,#eee 0 13%,#555 14% 17%,transparent 18%),linear-gradient(160deg,#bbb 0 28%,#333 29% 34%,#ddd 35% 63%,#555 64%)}
+    .t09{--image:linear-gradient(180deg,transparent 0 48%,#222 49% 55%,#aaa 56% 68%,#333 69%),radial-gradient(ellipse at 70% 38%,#eee 0 12%,transparent 34%),repeating-linear-gradient(92deg,#333 0 3px,#bbb 4px 9px,#555 10px 14px)}
+    .t10{--image:linear-gradient(170deg,#eee 0 28%,#777 29% 33%,transparent 34%),radial-gradient(ellipse at 51% 57%,#222 0 9%,transparent 10%),linear-gradient(180deg,#aaa,#444)}
+    .t11{--image:linear-gradient(164deg,#222 0 23%,#aaa 24% 28%,#eee 29% 50%,#555 51% 54%,#bbb 55% 73%,#333 74%)}
+    .t12{--image:radial-gradient(ellipse at 22% 30%,#eee 0 3%,transparent 15%),radial-gradient(ellipse at 75% 62%,#222 0 6%,transparent 20%),repeating-linear-gradient(135deg,#444 0 2px,#ccc 3px 6px,#777 7px 11px)}
+    .t13{--image:linear-gradient(180deg,#bbb 0 26%,#333 27% 31%,#eee 32% 49%,#777 50% 57%,#ddd 58% 78%,#222 79%)}
+    .grainy{--image:radial-gradient(ellipse at 65% 32%,#b5b5b5 0 9%,transparent 10%),linear-gradient(120deg,transparent 12%,#777 13% 16%,transparent 17% 25%,#555 26% 28%,transparent 29%),repeating-linear-gradient(170deg,#aaa 0 2px,#d4d4d4 3px 6px,#888 7px 9px)}
+    .forest{--image:radial-gradient(ellipse at 64% 70%,#eee 0 5%,transparent 6%),repeating-linear-gradient(82deg,#444 0 3px,#a5a5a5 4px 8px,#555 9px 12px),linear-gradient(#ccc,#555)}
+    .portrait{--image:radial-gradient(ellipse at 25% 38%,#222 0 12%,transparent 13%),radial-gradient(ellipse at 70% 40%,#333 0 14%,transparent 15%),linear-gradient(180deg,#444 0 32%,#bbb 33% 100%)}
+    .blue-dot{position:absolute;z-index:6;width:25px;height:25px;border-radius:50%;background:var(--blue);pointer-events:none;transition:transform .8s,opacity .7s}.d1{left:17%;top:12%}.d2{left:53%;top:30%}.d3{left:34%;top:43%}.d4{left:92%;top:34%}.d5{left:66%;top:53%}.d6{left:11%;top:61%}.d7{left:49%;top:78%}.d8{left:86%;top:89%}.d9{left:-1%;top:20%}.d10{left:99%;top:64%}
+    .hero-title{position:absolute;z-index:7;top:45%;left:50%;width:min(90vw,760px);transform:translate(-50%,-50%);text-align:center;font-size:clamp(27px,4vw,48px);font-weight:400;letter-spacing:-.065em;line-height:1.05;pointer-events:none}.hero-note{position:absolute;z-index:7;top:52%;left:50%;transform:translateX(-50%);font:italic 11px var(--serif);color:#555;white-space:nowrap}
+    .archive{position:relative;z-index:2;margin-top:-100vh;min-height:220vh;padding:22vh 8vw 20vh;overflow:hidden;background:var(--paper);opacity:0;transition:opacity .25s linear}.archive-heading{width:min(780px,84vw);margin:0 auto 18vh;text-align:center;font-weight:400;font-size:clamp(22px,3vw,36px);letter-spacing:-.045em;line-height:1.1}.archive-heading span{display:block;max-width:58ch;margin:16px auto 0;font:italic 14px/1.5 var(--serif);letter-spacing:0;color:#666}
+    .record{width:min(820px,82vw);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;align-items:start;column-gap:3.4vw;row-gap:8vh}.record-image{position:relative;width:100%;aspect-ratio:1/1;overflow:visible}.photo{position:absolute;inset:0;width:100%;height:100%;border-radius:2px;background:#d8d8d8;object-fit:cover;transition:transform .8s;cursor:default}.photo:hover{transform:scale(1.025)}.record-copy{padding:2px 0;font:12px/1.55 var(--serif);max-width:290px;color:#252525}.record-copy h2{font:normal 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;margin:0 0 15px;color:#555}.record-copy p{margin:0}.record:nth-of-type(2){margin-top:16vh}.record:nth-of-type(3){width:min(820px,82vw);margin:18vh auto 0}.record:nth-of-type(3) .record-copy{grid-column:2;grid-row:1}.record:nth-of-type(3) .record-image{grid-column:1;grid-row:1}.date{font-size:clamp(17px,2.1vw,26px);letter-spacing:-.06em;margin:20px 0 15px;text-align:center}.end-space{height:35vh;display:grid;place-items:center;font:italic 12px var(--serif);color:#777}
+    dialog{border:0;padding:0;width:min(480px,88vw);background:#fff;color:#111;box-shadow:0 20px 80px #0002}dialog::backdrop{background:#ffffff9c;backdrop-filter:blur(4px)}.detail{padding:35px}.detail-close{float:right;border:0;background:transparent;font-size:20px;cursor:pointer}.detail-mark{width:44px;height:44px;border-radius:50%;background:var(--blue);margin:22px 0}.detail h2{font-size:26px;font-weight:400;letter-spacing:-.06em;margin:0 0 10px}.detail p{font:14px/1.5 var(--serif);max-width:34ch}.detail small{font:10px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:#666}
+    @media(max-width:650px){.topbar{padding:19px 5vw;font-size:12px}.nav{gap:18px}.opening{height:250vh}.t01{left:4%;top:11%;width:13%;height:19%}.t02{left:23%;top:5%;width:20%;height:14%}.t03{left:17%;top:26%;width:9%;height:11%}.t04{left:42%;top:7%;width:17%;height:23%}.t05{left:68%;top:10%;width:26%;height:15%}.t06{left:78%;top:25%;width:17%;height:15%}.t07{left:70%;top:42%;width:9%;height:10%}.t08{left:90%;top:46%;width:8%;height:12%}.t09{left:5%;top:65%;width:24%;height:18%}.t10{left:31%;top:55%;width:13%;height:11%}.t11{left:55%;top:62%;width:18%;height:16%}.t12{left:76%;top:73%;width:19%;height:18%}.t13{left:33%;top:83%;width:23%;height:11%}.hero-title{top:46%;font-size:34px}.archive{margin-top:-100vh;padding:20vh 6vw 10vh;min-height:260vh}.archive-heading{width:90vw;margin-bottom:13vh;font-size:25px}.archive-heading span{font-size:12px;margin-top:12px}.record{width:88vw;grid-template-columns:1fr;gap:20px}.record-copy{max-width:45ch}.record:nth-of-type(2){margin-top:14vh}.record:nth-of-type(3){width:88vw;margin:14vh auto 0}.record:nth-of-type(3) .record-image,.record:nth-of-type(3) .record-copy{grid-column:auto;grid-row:auto}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><a href="#top">(index)</a><nav class="nav"><a href="#top">menu</a><a href="#archive">archives</a></nav></header>
+  <main>
+    <section class="opening" id="top" aria-label="Floating archive fragments">
+      <div class="opening-frame">
+      <div class="field">
+        <button class="tile t01" data-fragment="01" aria-label="Open fragment 01"><small>01</small></button>
+        <button class="tile t02" data-fragment="02" aria-label="Open fragment 02"><small>02</small></button>
+        <button class="tile t03" data-fragment="03" aria-label="Open fragment 03"><small>03</small></button>
+        <button class="tile t04" data-fragment="04" aria-label="Open fragment 04"><small>04</small></button>
+        <button class="tile t05" data-fragment="05" aria-label="Open fragment 05"><small>05</small></button>
+        <button class="tile t06" data-fragment="06" aria-label="Open fragment 06"><small>06</small></button>
+        <button class="tile t07" data-fragment="07" aria-label="Open fragment 07"><small>07</small></button>
+        <button class="tile t08" data-fragment="08" aria-label="Open fragment 08"><small>08</small></button>
+        <button class="tile t09" data-fragment="09" aria-label="Open fragment 09"><small>09</small></button>
+        <button class="tile t10" data-fragment="10" aria-label="Open fragment 10"><small>10</small></button>
+        <button class="tile t11" data-fragment="11" aria-label="Open fragment 11"><small>11</small></button>
+        <button class="tile t12" data-fragment="12" aria-label="Open fragment 12"><small>12</small></button>
+        <button class="tile t13" data-fragment="13" aria-label="Open fragment 13"><small>13</small></button>
+        <span class="blue-dot d1"></span><span class="blue-dot d2"></span><span class="blue-dot d3"></span><span class="blue-dot d4"></span><span class="blue-dot d5"></span><span class="blue-dot d6"></span><span class="blue-dot d7"></span><span class="blue-dot d8"></span><span class="blue-dot d9"></span><span class="blue-dot d10"></span>
+      </div>
+      <h1 class="hero-title">The archaeology of silence</h1>
+      <div class="hero-note">an archive of what slowly fell quiet</div>
+      </div>
+    </section>
+    <section class="archive" id="archive" aria-label="The first archive records">
+      <h2 class="archive-heading">The people who remained in the archive<span>Each portrait holds a different rhythm of distance — anonymized faces, shared silences.</span></h2>
+      <article class="record">
+        <div class="record-image"><img class="photo one" src="assets/julia-portrait.png" alt="An anonymous grayscale portrait with a Klein-blue band across the face"></div>
+        <div class="record-copy"><h2>Júlia / 01</h2><p>I thought I had lost Júlia when our relationship changed. We are still close friends. What I lost was one shape of our relationship, not the care that remains. We still find our way back to each other, though the rhythm is different now.</p></div>
+      </article>
+      <article class="record">
+        <div class="record-copy"><h2>Armand / 02</h2><p>We kept meaning to call. The intervals grew quietly, until a familiar voice became something we had to make time for. Nothing ended in a single moment; our conversations simply found fewer openings in the day.</p></div>
+        <div class="record-image"><img class="photo two" src="assets/m-portrait.png" alt="An anonymous monochrome portrait marked with a blue brushstroke across the eyes"></div>
+      </article>
+      <article class="record">
+        <div class="record-copy"><h2>Marta / 03</h2><p>Nothing broke between us. Our days simply began to move at different speeds, and fewer moments found their way across. The silence gathered gently, leaving affection intact while the old closeness took another form.</p></div>
+        <div class="record-image"><img class="photo three" src="assets/a-portrait.png" alt="An anonymous monochrome portrait marked with a blue brushstroke across the eyes"></div>
+      </article>
+      <div class="end-space">some things leave no final mark</div>
+    </section>
+  </main>
+  <dialog id="fragment-dialog"><div class="detail"><button class="detail-close" aria-label="Close">×</button><small id="detail-number">Fragment 01</small><div class="detail-mark"></div><h2 id="detail-title">An interval</h2><p id="detail-copy">The archive holds shapes and distances, never names or private words.</p></div></dialog>
+  <script>
+    const tiles=[...document.querySelectorAll('.tile')];
+    const dots=[...document.querySelectorAll('.field .blue-dot')];
+    const clamp=(value,min=0,max=1)=>Math.max(min,Math.min(max,value));
+    function onScroll(){
+      const y=window.scrollY;const h=window.innerHeight;
+      tiles.forEach((tile,i)=>{
+        const stagger=i/Math.max(1,tiles.length-1);const start=(.06+stagger*.64)*h;const end=(.84+stagger*.51)*h;const p=clamp((y-start)/(end-start));
+        tile.style.opacity=String(1-p);tile.style.setProperty('--scroll-y',`${-p*(24+(i%4)*12)}px`);tile.style.setProperty('--scroll-scale',String(1-p*.88));
+      });
+      dots.forEach((dot,i)=>{
+        const stagger=i/Math.max(1,dots.length-1);const start=(.08+stagger*.62)*h;const end=(.87+stagger*.49)*h;const p=clamp((y-start)/(end-start));
+        dot.style.opacity=String(1-p);dot.style.transform=`translateY(${-p*22}px) scale(${1-p*.84})`;
+      });
+      const archiveProgress=clamp((y-1.5*h)/(.12*h));const archive=document.querySelector('.archive');archive.style.opacity=String(archiveProgress);archive.style.pointerEvents=archiveProgress>.95?'auto':'none';
+      const titleProgress=clamp((y-.5*h)/(.7*h));document.querySelector('.hero-title').style.opacity=String(1-titleProgress);document.querySelector('.hero-note').style.opacity=String(1-titleProgress);
+    }
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+    const dialog=document.querySelector('#fragment-dialog');
+    const fragments=[
+      ['The first pause','At first, a late reply still feels like an exception. Silence has not yet become the pattern.'],
+      ['A longer interval','The pauses stretch. Eventually, waiting itself becomes part of the conversation.'],
+      ['A thinning rhythm','No argument marks the change. The shared rhythm simply becomes harder to keep.'],
+      ['A shared decline','Across this five-year archive, messages recede at a nearly equal pace on both sides.'],
+      ['The last peak','The most active moments can appear just before the decline. A final peak can look like closeness.'],
+      ['Less without a reason','Fewer messages arrive without a reason. The habit fades before its meaning does.'],
+      ['Ordinary silence','The distance grows through ordinary days, almost too slowly to notice.'],
+      ['No final line','There is no clear final message. There are only longer spaces between the ones that remain.'],
+      ['A message returns','A message returns after months. The old rhythm does not return with it.'],
+      ['A brief reappearance','A signal can return without becoming a new beginning.'],
+      ['The shape of a habit','What remains is not a transcript, but the outline of a shared routine.'],
+      ['Quiet on both sides','Both sides fall quiet together; distance can gather without one person choosing it.'],
+      ['What stays','The relationship leaves traces in the time once spent reaching for each other.']
+    ];
+    document.querySelectorAll('.tile').forEach((tile,i)=>tile.addEventListener('click',()=>{const [title,copy]=fragments[i%fragments.length];document.querySelector('#detail-number').textContent=`Fragment ${tile.dataset.fragment}`;document.querySelector('#detail-title').textContent=title;document.querySelector('#detail-copy').textContent=copy;dialog.showModal()}));
+    document.querySelector('.detail-close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
+  </script>
+</body>
+</html>
